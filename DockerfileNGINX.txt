@@ -1,0 +1,8 @@
+#------------------------------------------------------
+# Dockefile to build Docker Image of NGINX WebServer
+#------------------------------------------------------
+FROM nginx:latest
+
+RUN echo 'Hello World from Docker!' > /usr/share/nginx/html/index.html
+
+EXPOSE 80
