@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v#Номер версии
+kind: Ingress
+metadata:
+  name: ingress-hosts
+
+spec:
+  rules:
+  - host: tomcat.evg.net
+    http:
+      paths:
+        - backend:
+           serviceName: tomcat
+           servicePort: 8080
