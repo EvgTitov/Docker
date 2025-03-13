@@ -1,4 +1,4 @@
-apiVersion : v1
+apiVersion : v#Номер версии
 kind: Pod
 metadata:
   name: hellopod
