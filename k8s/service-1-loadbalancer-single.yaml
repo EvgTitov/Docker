@@ -21,7 +21,7 @@ spec:
             - containerPort: 80
 
 ---
-apiVersion: v1
+apiVersion: v#Номер версии
 kind: Service
 metadata:
   name: my-single-pod-service
