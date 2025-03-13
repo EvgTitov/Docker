@@ -1,0 +1,23 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment-replicas
+  labels:
+    app  : my-k8s-application
+    env  : prod
+    owner: evg
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: evg2
+  template:
+    metadata:
+      labels:
+        project: evg2
+    spec:
+      containers:
+        - name : evg2-web
+          image: #Вписываем имидж
+          ports:
+            - containerPort: 80
