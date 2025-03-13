@@ -1,0 +1,49 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment-autoscaling
+  labels:
+    app  : my-k8s-application
+    env  : prod
+    owner: evg
+spec:
+#  replicas: 2   # Реплика больше не нужна т.к мы используем автоскейлинг
+  selector:
+    matchLabels:
+      project: evg2
+  template:
+    metadata:
+      labels:
+        project: evg2
+    spec:
+      containers:
+        - name : evg2-web
+          image: Вставляем имидж
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-autoscaling
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-web-deployment-autoscaling
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
