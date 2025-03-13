@@ -1,4 +1,4 @@
-apiVersion : apps/v1
+apiVersion : apps/v#Номер версии
 kind: Deployment
 metadata:
   name: my-web-deployment-multi-pod
@@ -26,7 +26,7 @@ spec:
             - containerPort: 8080  # Port on Pod
 
 ---
-apiVersion: v1
+apiVersion: v#Номер версии
 kind: Service
 metadata:
   name: my-multi-pods-service
