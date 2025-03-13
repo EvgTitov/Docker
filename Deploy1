@@ -1,0 +1,20 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment
+  labels:
+    app : my-k8s-application
+spec:
+  selector:
+    matchLabels:
+      project: evg
+  template:
+    metadata:
+      labels:
+        project: evg
+    spec:
+      containers:
+        - name : evg-web
+          image: #вписываем имидж
+          ports:
+            - containerPort: 80
