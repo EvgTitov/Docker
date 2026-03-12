@@ -1,0 +1,23 @@
+FROM python:3.9-slim
+
+# Создаём непривилегированного пользователя
+RUN groupadd -r appuser && useradd -r -g appuser appuser
+
+# Устанавливаем рабочую директорию
+WORKDIR /app
+
+# Копируем файлы проекта
+COPY . .
+
+# Обновляем pip и устанавливаем зависимости от имени непривилегированного пользователя
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Переключаемся на непривилегированного пользователя
+USER appuser
+
+# Открываем порт
+EXPOSE 5000
+
+# Запускаем приложение
+CMD ["python", "app.py"]
